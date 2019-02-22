@@ -1,0 +1,124 @@
+    ReactJs是一个用于构建用户界面的Jacascript库
+    很多人认为React 是MVC中的V(视图)
+    ReactJs起源于Facebook的内部项目，React拥有较高的性能
+
+
+ReactJs的特点
+    1.声明式设计 2.高效 3.灵活
+    4.JSX 的开发语言，其实就是 js + html,这其中的html是以xml的规范来写
+    5.组件
+        通过React构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中
+    6.单向相应的数据流
+        减少了重复代码
+
+ReactJs的元素都是不能改的，每次被创建之后，只能是重新渲染页面，这就需要有新的数据过来
+
+<script src="https://cdn.staticfile.org/react/16.4.0/umd/react.development.js"></script>
+<script src="https://cdn.staticfile.org/react-dom/16.4.0/umd/react-dom.development.js"></script>
+<script src="https://cdn.staticfile.org/babel-standalone/6.26.0/babel.min.js"></script>
+
+react.development.js  是ReactJS的核心库
+react-dom.development.js  提供与DOM操作相关的方法、功能
+babel.min.js  ，用来把 jsx 转化为 js 的功能
+
+ReactJs的方法
+1  .render()方法，将 ReactJs元素，渲染到页面上
+
+2.组件 
+    使用函数来定义一个组件，首字母必须大写
+    把函数名，<函数名/>以这种方式包围起来，放到ReactDOM方法中
+  
+  向组件中传入参数，使用自定义属性传入
+    传入props. 自定义属性名 获取
+
+组件式开发，就是封装一堆功能不同的组件，然后像搭积木一样，来搭建网站、应用的功能
+
+ReactJs的注释写法：{/**/}
+
+
+<!-- State 状态 -->
+ React把组件看成一个状态机(State Machines)
+ 通过与用户的交互，实现不同状态，然后渲染UI,
+ 更新视图，让用户界面和数据保持一致
+
+this.state(),表示这个react组件当前的状态；
+<!-- 要修改这个状态 -->
+this.setState()
+每当调用了setState的时候，就会有两个操作
+   — this.state的值被修改
+   - 会触发ReactDOM.render()的执行
+
+3.组件的生命周期分成三个状态
+    每个状态提供两种处理函数
+     -will 函数在进入状态之前被调用
+     -did 函数在进入状态之后被调用
+  <!-- Mounting : 已插入真实DOM -->
+    componentWillMount()
+    componentDidMount()  当页面加载了DOM后执行
+
+  <!-- Updating : 正在被重新渲染 -->
+    componentWillUpdate()
+    componentDidUpdata()
+
+  <!-- Unmounting : 已移除真实 DOM -->
+    componentWillUnmount()
+    componentDidUpdate()
+
+<!-- 两种特殊状态的处理函数 -->
+compoentWillReceiveProps()    已加载组件收到新的参数时调用
+
+shouldComponentUpdate()   组件判断是否重新渲染时调用
+
+4.props
+props和state的区别
+
+state , 可以根据用户的操作，而改变；
+props , 它是从别的地方接受过来的参数，是不变的，
+别人传给你是什么样的props，你接受的就是什么样
+
+
+5.条件渲染
+根据if条件决定哪些内容显示在视图上
+
+
+6.map()方法
+    遍历生成一数字列表
+    -接收一个匿名函数
+    -此匿名函数有三个参数
+        第一个：是数组成员中的每一项
+        第二个：是数组成员中每一项在当前数组的索引
+        第三个：是数组本身
+map()会返回一个新数组
+        数组中的成员。是原始数组调用处理函数之后的值；
+        也就是说，它返回的不是最开始你处理的那个数组；
+
+React会自动的展开数组
+
+React的循环操作，要为它加上key,这是一个react内部的索引操作
+
+7.reactJs的父子组件的事件、传值
+在vueJs中被称为双向绑定
+
+8.React中的ref , 它是用来引用真实的dom,作用跟普通网页中的id是一样的
+     ref : 用来引入dom节点
+     refs : 用来获取dom节点
+
+<!-- React的路由 -->
+在React中，路由是一个单独的包，需要单独的安装
+
+React Router被拆分成三个包：
+    react-router,
+    react-router-dom
+    react-router-native
+
+ react-router , 提供核心的路由组件与函数   
+
+ 在运行网站的时候，只需安装  react-router-dom
+  react-router-dom，会调用react-router的方法
+
+npm install --save react-router-dom
+
+--save，是安装到当前的项目中
+
+路由中，链接的跳转使用
+    <Link to="链接地址"></Link>
