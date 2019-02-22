@@ -1,0 +1,93 @@
+redux 为解决复杂的应用
+    -是多交互，多用户，多数据源
+
+
+redux 的设计思想
+
+1.整个app应用是一个大的状态机，
+    视图（页面）和状态（数据）是一一对应用
+    <!-- 就是数据驱动视图 -->
+
+2.所有的状态(也就是数据)，都保存在一个大的对象里，store
+    <!-- 就是所有的数据都存在一个大全局变量里 -->
+    store对象，独立于所有的组件的
+    这就是数据和组件的松耦合
+
+
+<!--  -->
+redux 需要独立安装  :  npm install redux -save
+
+<!-- redux的方法 -->
+
+1.Store
+    用来保存数据的地方，整个app应用，应该只有一个store
+        createStore()，用来生成store
+    import {createStore} from 'redux'
+    let store = createStore(fn)      //生成了一个store
+    fn这个参数，是reducers，是计算过程
+
+2.State，是状态
+    store.getState()，从store当中获取状态，就是从大全局对象里面取得数据
+
+3.Action
+    Action，导致state发生变化的
+
+            例如，当点击某一个按钮时，就触发了一个Action，
+            这时我们说，view发出了一个action，
+            这个action，它通知state，从store中取得数据。
+
+一个state对应一个view，
+那么你view发出了action，view变了，那么state也要发生变化。
+    <!-- action，是一个对象，结构如下 -->
+    let action = {
+            <!-- type必须有，其它随意 ，就是根据type，来分辨动作-->
+        type : 'xxx',
+        info : 'abc 123'
+    }
+
+在redux中，改变state的唯一方法就是action
+
+4.dispatch
+    是view发出action的唯一方法
+    .dispatch()，是store的方法
+
+    import {createStore}  from 'redux'
+    let store = createStore(fn); //生成了一个store
+
+    //这是一个action，由dispatch发出
+    let action = {
+        type:'xxx',
+        info:'abc 123'
+    }
+
+// 某个按钮事件，onclick执行了下面这一行
+store.dispatch(action);
+// 然后再根据type来分辨你要操作的东西，在哪判断呢？就在reducer
+
+    你点击页面上的一个按钮，触发onclick或其它事件，
+        调用了store.dispatch(action)，它的参数是action
+
+    所以我们说，view通过dispatch发出了一个action。
+
+<!-- reducer -->
+计算过程，
+就是页面上发出了action，导致了state的变化 。
+
+根据action的type，区分不同的操作，就在reducer里面，
+
+store.dispatch(action)，你view上dispatch的action，
+最终到了reducer里面。
+
+reducer是一个函数，接收二个参数，
+当前的state，action
+
+ state发生变化，会自动的触发render()，
+ 重新渲染页面，给出一个新的state，
+ 这导致了view变化 ，这个过程，叫reducer。
+
+
+ <!--  -->
+Store，有三个方法
+    Store.getState()，用来获取初始状态
+    Store.dispatch()，用来发出action
+    Store.subscribe()，监听state的变化，自动更新页面。
